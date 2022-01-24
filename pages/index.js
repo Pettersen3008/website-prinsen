@@ -6,6 +6,8 @@ export default function Home() {
   const toast = useToast();
 
   async function submit() {
+
+    // Request to the server
     const res = await fetch("/api/users", {
       method: "POST",
       headers: {
@@ -18,9 +20,10 @@ export default function Home() {
       }),
     });
 
+    // Convert response to json
     const data = await res.json();
-    console.log(res, data)
 
+    // Show toast message if user is added to database or if user information is missing
     if (res.status === 201) {
       toast({
         title: data.title,
